@@ -112,7 +112,7 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
         if (!is_array($params) && !is_object($params)) {
             throw new Zend_EventManager_Exception_InvalidArgumentException(sprintf(
                 'Event parameters must be an array or object; received "%s"',
-                (is_object($params) ? get_class($params) : gettype($params))
+                gettype($params)
             ));
         }
 
