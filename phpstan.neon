@@ -1,13 +1,16 @@
 parameters:
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
     level: 8
+    treatPhpDocTypesAsCertain: false
     paths:
         - ./
     excludePaths:
         - %rootDir%/../../../vendor/*
         - %rootDir%/../../../tests/*
     ignoreErrors:
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: missingType.generics
         -
             message: '#Access to an undefined property Zend_EventManager_FilterChain::\$responses\.#'
             path: ./src/Zend/EventManager/FilterChain.php
@@ -33,16 +36,6 @@ parameters:
             message: '#Return type \(Zend_EventManager_Filter_FilterIterator\) of method Zend_EventManager_FilterChain::getFilters\(\) should be compatible with return type \(array\) of method Zend_EventManager_Filter::getFilters\(\)#'
             path: ./src/Zend/EventManager/FilterChain.php
 
-        # Defensive coding, types can't be enforced via php type-hints
-        -
-            message: '#Result of && is always false\.#'
-            path: ./src/Zend/EventManager/Event.php
-        -
-            message: '#Else branch is unreachable because ternary operator condition is always true\.#'
-            path: ./src/Zend/EventManager/Event.php
-        -
-            message: '#Else branch is unreachable because ternary operator condition is always true.#'
-            path: ./src/Zend/EventManager/EventManager.php
         # this seems to be a mistake in phpstan, as I'm not sure what's more "class-string" than "Class::class"
         -
             message: '#Property Zend_EventManager_EventManager::\$eventClass \(class-string<Zend_EventManager_Event>\) does not accept string\.#'
